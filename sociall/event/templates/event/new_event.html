@@ -1,0 +1,21 @@
+{% extends "sociall/base.html" %}
+
+{% block page_title %}
+: create new event
+{% endblock %}
+
+{% block content %}
+<form action="create_event" method="post">
+{% csrf_token %}
+    Event Name: <input type="text" name="event_name"/><br>
+    Instagram Hashtag: <input type="text" name="instagram_hashtag"/><br>
+    Instagram Handle: <input type="text" name="instagram_handle"/><br>
+    Twitter Hashtag: <input type="text" name="twitter_hashtag"/><br>
+    Twitter Handle: <input type="text" name="twitter_handle"/><br>
+    Active Status:<br>
+    <input type="radio" name="active_status" value="1" checked>Live
+	<input type="radio" name="active_status" value="2">Inactive
+    <br><br>
+<input type="submit" value="Create Event" />
+</form>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends "sociall/base.html" %}
+
+{% block page_title %}
+: {{ event.event_name }}
+{% endblock %}
+
+{% block content %}
+{% load staticfiles %}
+<h3>instagram: #{{ event.instagram_hashtag }}</h3>
+
+<div id="container" class="js-masonry">
+{% if photos %}
+    {% for photo in photos reversed%}
+    <div style="border: solid 10px #f4f4f4" class="item">
+        <img src="{{ photo.image_url }}">
+        <div style="background-color: white; min-height: 20px; overflow: hidden; padding: 10px; box-shadow: 0 1px 2px rgba(0,0,0,0.5); margin-top: -5px;
+">
+        {{photo.caption}}<br>
+        <hr>
+        <i>Posted by <a href="http://instagram.com/{{photo.post_by}}">{{photo.post_by}}</a> on {{photo.post_date}}</i>
+        </div>
+    </div>
+    {% endfor %}
+{% endif %}
+</div>
+
+<!-- <div>
+{% if photos %}
+    {% for photo in photos reversed%}
+    <div>
+    	<img src="{{ photo.image_url }}">
+    	<div style="background-color: #eee; width: 640px; margin-top: 0px;">
+    	<p>Post By: {{photo.post_by}}</p>
+    	<p>Post Date: {{photo.post_date}}</p>
+    	<p>Post Likes: {{photo.like_count}}</p>
+    	<p>Post Tags:</p>
+        {% for tag in photo.tag_array %}
+            <p>{{tag}}</p>
+        {% endfor %}
+    	<p style="word-wrap: break-word">Post Caption: {{photo.caption}}</p>
+    	</div>
+    </div>
+    {% endfor %}
+{% endif %}
+</div>
+ -->
+
+<script type="text/javascript">
+$(window).load(function() {
+  $('#container').masonry({
+    columnWidth: 0, gutter: 0,
+    itemSelector: '.item'
+  });
+});
+</script>
+{% endblock %}
